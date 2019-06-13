@@ -9,4 +9,4 @@ Usage:
 * Installation: ```cp traffic.py /usr/local/bin/traffic & chmod +x /usr/local/bin/traffic```
 * Run with ```traffic "my first address" "my second address"``` - it will show all possible routes (up to three) with travel times:
 
-(/screenshots/screenshot1.png?raw=true)
+![Usage example](/screenshots/screenshot1.png?raw=true)

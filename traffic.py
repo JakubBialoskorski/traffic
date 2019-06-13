@@ -4,33 +4,38 @@ import googlemaps
 import requests
 import sys
 from datetime import datetime
+import argparse
 
-#Enter your Google API Token below
-token = 'PUT_YOUR_TOKEN_HERE'
+parser = argparse.ArgumentParser(
+    description="Check the most pessimistic travel time between two points, using Google Maps API")
+parser.add_argument("--token", help="Your Google API token", required=True)
+parser.add_argument("--start", help="Starting point of your journey", required=True)
+parser.add_argument("--end", help="Final point of your journey", required=True)
+args = parser.parse_args()
 
-start = sys.argv[1]
-end = sys.argv[2]
 now = datetime.now()
-client = googlemaps.Client(key=token)
+client = googlemaps.Client(key=args.token)
 
-#Get directions for driving with most pessimistic travel time
+# Get directions for driving with most pessimistic travel time
 try:
-    directions = client.directions(start,end,alternatives=True,mode="driving",avoid="ferries",departure_time=now,traffic_model="pessimistic")
+    directions = client.directions(args.start, args.end, alternatives=True, mode="driving", avoid="ferries",
+                                   departure_time=now,
+                                   traffic_model="pessimistic")
 
-#Prepare data
-    table = dict()
+    # Prepare data
+    table = {}
     for i in range(len(directions)):
         table.setdefault(directions[i]["summary"])
         table[directions[i]["summary"]] = directions[i]["legs"][0]["duration"]["text"]
     result_list = []
-    for key,value in table.items():
-        result_list.append(' '.join([key,':',value, "\n"]))
+    for key, value in table.items():
+        result_list.append(" ".join([key, ":", value, "\n"]))
 
-#Prepare the output
-    message = ''.join(result_list)
-    print message
+    # Prepare the output
+    message = "".join(result_list)
+    print(message)
 
-#Error handling
+# Error handling
 except:
-    error = 'Error during processing'
-    print 'Error'
+    print("Error during processing")
+    exit(1)

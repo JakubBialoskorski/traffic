@@ -26,7 +26,7 @@ try:
     table = {}
     for i in range(len(directions)):
         table.setdefault(directions[i]["summary"])
-        table[directions[i]["summary"]] = directions[i]["legs"][0]["duration"]["text"]
+        table[directions[i]["summary"]] = directions[i]["legs"][0]["duration_in_traffic"]["text"]
     result_list = []
     for key, value in table.items():
         result_list.append(" ".join([key, ":", value, "\n"]))

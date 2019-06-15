@@ -8,13 +8,12 @@ import argparse
 
 parser = argparse.ArgumentParser(
     description="Check the most pessimistic travel time between two points, using Google Maps API")
-parser.add_argument("--token", help="Your Google API token", required=True)
 parser.add_argument("--start", help="Starting point of your journey", required=True)
 parser.add_argument("--end", help="Final point of your journey", required=True)
 args = parser.parse_args()
 
 now = datetime.now()
-client = googlemaps.Client(key=args.token)
+client = googlemaps.Client(key="YOUR_GOOGLE_MAPS_API_TOKEN_HERE")
 
 # Get directions for driving with most pessimistic travel time
 try:

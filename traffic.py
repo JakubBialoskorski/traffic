@@ -3,23 +3,34 @@
 import googlemaps
 import requests
 import sys
+from pathlib import Path
 from datetime import datetime
 import argparse
 
-parser = argparse.ArgumentParser(
-    description="Check the most pessimistic travel time between two points, using Google Maps API")
+# Check if the config exists - if not, then create it. If yes - read it.
+config = Path("config.txt")
+if config.is_file():
+    f = open("config.txt","r")
+    if f.mode == 'r':
+        API_KEY = f.read()
+    pass
+else:
+    API_KEY = raw_input("Please put/paste your Google Maps API key: ")
+    f = open("config.txt", "w+")
+    f.write(API_KEY)
+    f.close()
+
+parser = argparse.ArgumentParser(description="Check the most pessimistic travel time between two points, using Google Maps API")
 parser.add_argument("--start", help="Starting point of your journey", required=True)
 parser.add_argument("--end", help="Final point of your journey", required=True)
 args = parser.parse_args()
 
 now = datetime.now()
-client = googlemaps.Client(key="YOUR_GOOGLE_MAPS_API_TOKEN_HERE")
+client = googlemaps.Client(key=API_KEY)
 
 # Get directions for driving with most pessimistic travel time
 try:
-    directions = client.directions(args.start, args.end, alternatives=True, mode="driving", avoid="ferries",
-                                   departure_time=now,
-                                   traffic_model="pessimistic")
+    directions = client.directions(args.start, args.end, alternatives=True, mode="driving", avoid="ferries", departure_time=now, traffic_model="pessimistic")
 
     # Prepare data
     table = {}

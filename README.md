@@ -6,7 +6,6 @@ Usage:
 
 * Obtain free Google Maps API key: https://developers.google.com/maps/documentation/javascript/get-api-key
 * Run ```pip install -r requirements.txt```
-* System-wide installation: ```cp traffic.py /usr/local/bin/traffic & chmod +x /usr/local/bin/traffic```
 * Run with ```traffic --start "FIRST ADDRESS" --end "SECOND ADDRESS"``` - it will initialize the configuration (only first time usage) and show all possible routes (up to three) with travel times:
 
 ![Usage example](/screenshots/screenshot1.png?raw=true)

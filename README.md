@@ -1,5 +1,5 @@
 # traffic
-Check the most pessimistic travel time between two points, using Google Maps API.
+Check the travel time between two points, using Google Maps API.
 
 ---
 Usage:

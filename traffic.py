@@ -23,6 +23,7 @@ else:
 parser = argparse.ArgumentParser(description="Check the most pessimistic travel time between two points, using Google Maps API")
 parser.add_argument("--start", help="Starting point of your journey", required=True)
 parser.add_argument("--end", help="Final point of your journey", required=True)
+parser.add_argument("--model", help="(optional) best_guess (default) / optimistic / pessimistic", required=False)
 args = parser.parse_args()
 
 now = datetime.now()
@@ -30,7 +31,7 @@ client = googlemaps.Client(key=API_KEY)
 
 # Get directions for driving with most pessimistic travel time
 try:
-    directions = client.directions(args.start, args.end, alternatives=True, mode="driving", avoid="ferries", departure_time=now, traffic_model="pessimistic")
+    directions = client.directions(args.start, args.end, alternatives=True, mode="driving", avoid="ferries", departure_time=now, traffic_model=args.model)
 
     # Prepare data
     table = {}

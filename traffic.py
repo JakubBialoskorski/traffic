@@ -15,6 +15,7 @@ if config.is_file():
         API_KEY = f.read()
     pass
 else:
+    print "No configuration detected. \n"
     API_KEY = raw_input("Please put/paste your Google Maps API key: ")
     f = open("config.txt", "w+")
     f.write(API_KEY)

@@ -21,7 +21,7 @@ else:
     f.write(API_KEY)
     f.close()
 
-parser = argparse.ArgumentParser(description="Check the most pessimistic travel time between two points, using Google Maps API")
+parser = argparse.ArgumentParser(description="Check travel time between two points, using Google Maps API")
 parser.add_argument("--start", help="Starting point of your journey", required=True)
 parser.add_argument("--end", help="Final point of your journey", required=True)
 parser.add_argument("--model", help="(optional) best_guess (default) / optimistic / pessimistic", required=False)

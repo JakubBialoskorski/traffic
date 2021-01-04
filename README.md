@@ -15,3 +15,5 @@ Usage:
 1. ```best_guess``` is the default mode used by Google Maps GUI
 2. ```optimistic``` will show to best possible time that can be achieved on your route
 3. ```pessimistic``` will show the worst possible time (including historical data) for your route
+
+Lambda version can be found [here](/lambda).
